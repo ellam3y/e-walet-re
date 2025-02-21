@@ -58,9 +58,17 @@ export default function App() {
             <button
               type="submit"
               onClick={(e) => {
-                e.preventDefault();
-                setBalance(balance - withdrawAmount.current.value);
-                withdrawAmount.current.value = "";
+                if (
+                  balance < withdrawAmount.current.value ||
+                  balance == 0 ||
+                  withdrawAmount.current.value == 0
+                ) {
+                  alert("Insufficient balance");
+                } else {
+                  e.preventDefault();
+                  setBalance(balance - withdrawAmount.current.value);
+                  withdrawAmount.current.value = "";
+                }
               }}
               className="btn btn-primary"
             >
